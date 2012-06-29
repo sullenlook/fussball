@@ -1,0 +1,20 @@
+FUSSBALL PLUGIN IN DEUTSCH
+
+
+Sag "alle Fussballspiele" oder "Fussballspiele" bzw.
+Sag "live Fussball FC xxx" oder "Fussball 1. FC xxx" oder "spiele VfL xxx heute" oder "was ist das Ergebnis für 1. FC xxx" Siri sagt dir die Ergebnisse an.
+
+
+Clone fussball in Dein plugins Ordner.
+ˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆ
+
+        https://github.com/sullenlook/fussball.git
+
+
+Füge folgendes in plugins.conf:
+ˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆ
+
+        fussball
+
+
+FERTIG

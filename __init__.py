@@ -18,14 +18,14 @@ from siriObjects.answerObjects import AnswerSnippet, AnswerObject, AnswerObjectL
 
 class fussiPlugin(Plugin):
 
-	@register("de-DE", ".*(live fußball) (.*)|.*(fußball) (.*)|.*(.*)|.*spiele (.*) heute|.*was ist das Ergebnis für (.*)")
+	@register("de-DE", ".*(live fußball) (.*)|.*(fußball) (.*)|.*(.*)|.*spiele heute (.*)|.*Ergebnis für (.*)")
 	@register("en-GB", ".*(live football) (.*)|.*(live soccer) (.*)|.*for (.*)|.*games in (.*) today|.*what is the score for (.*)")
 	def onlyone(self, speech, language, regex):
 		searchString = regex.group(regex.lastindex).strip()
 		gefunden = 0;
 		html = urllib.urlopen("http://www.soccerstand.com/rss/soccer").read()
 		dom = xml.dom.minidom.parseString(html)	
-                self.say("Let me check my sources...")
+                self.say("Ich checke meine Quellen...")
 		for node in dom.getElementsByTagName('item'):
 			sendung = node.getElementsByTagName('title')
 			sendeinfo = sendung[0].firstChild.data
@@ -33,7 +33,7 @@ class fussiPlugin(Plugin):
 				gefunden = 1;
 				self.say(sendeinfo, sendeinfo.split("(")[0].replace("'","minute").replace("Borussia M'","").replace(" VfB","").replace(" FC","").replace("K'","").replace("1.","").replace("FSV","").replace("Werder ","").replace(" 04"," ").replace(" 05 "," ").replace("VfL","").replace("1. FC","").replace("HSV","HS Fau").replace("(*)", ''))
 		if gefunden == 0:
-			self.say(u"Sorry I did not find any games for \""+searchString+"\"")
+			self.say(u"Leider habe ich keine Spiele gefunden fuer \""+searchString+"\"")
 		self.complete_request()
 		
         @register("de_DE", ".*alle .*fußballspiele.*|.*fußballspiele.*")
@@ -41,7 +41,7 @@ class fussiPlugin(Plugin):
 	def onlyall(self, speech, language, regex):
 		html = urllib.urlopen("http://www.soccerstand.com/rss/soccer").read()
 		dom = xml.dom.minidom.parseString(html)	
-                self.say("I found the following games today...")
+                self.say("Ich fand die folgenden Spiele heute...")
                 sendeinfo = ''
                 for node in dom.getElementsByTagName('item'):
                         sendung = node.getElementsByTagName('title')
